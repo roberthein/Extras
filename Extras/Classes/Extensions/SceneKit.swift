@@ -2,13 +2,6 @@ import Foundation
 import UIKit
 import SceneKit
 
-public extension SCNVector3 {
-    
-    public static var zero: SCNVector3 {
-        return SCNVector3(0, 0, 0)
-    }
-}
-
 public extension SCNVector4 {
     
     public static var zero: SCNVector4 {
