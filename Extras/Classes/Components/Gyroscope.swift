@@ -6,7 +6,7 @@ public let Gyroscope = GyroManager.shared
 
 public class GyroManager: CMMotionManager {
     
-    private static let shared = GyroManager()
+    static let shared = GyroManager()
     private let queue = OperationQueue()
     
     public func observe(_ observer: @escaping (_ gyro: CGVector) -> Void) {
