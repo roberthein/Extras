@@ -11,10 +11,13 @@ public extension SCNVector4 {
 
 public extension SCNPhysicsContact {
     
-    public func between<T: SCNNode, K: SCNNode>(_ node: T, and nodes: [K], action: (T, K) -> ()) {
+    public func between<T: SCNNode, K: SCNNode>(_ node: T, and nodes: [K], action: @escaping ((T, K) -> ())) {
         
         if [nodeA, nodeB].contains(node), let otherNode = [nodeA, nodeB].filter({ $0 is K }).first as? K {
-            action(node, otherNode)
+            
+            DispatchQueue.main.async {
+                action(node, otherNode)
+            }
         }
     }
 }

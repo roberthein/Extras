@@ -13,7 +13,7 @@ public class GyroManager: CMMotionManager {
         startAccelerometerUpdates(to: queue) { data, error in
             guard let data = data else { return }
             
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 observer(CGVector(dx: CGFloat(data.acceleration.x) * -150, dy: CGFloat(data.acceleration.y) * 150))
             }
         }
