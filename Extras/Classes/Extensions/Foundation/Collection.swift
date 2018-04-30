@@ -7,7 +7,7 @@ public extension Collection {
     /// - Parameter startIndex: The start index
     /// - Returns: The distance
     private func distance(from startIndex: Index) -> Int {
-        return distance(from: startIndex, to: self.endIndex)
+        return distance(from: startIndex, to: endIndex)
     }
     
     /// Returns the distance to a given end index.
@@ -15,7 +15,7 @@ public extension Collection {
     /// - Parameter endIndex: The end index
     /// - Returns: The distance
     private func distance(to endIndex: Index) -> Int {
-        return distance(from: self.startIndex, to: endIndex)
+        return distance(from: startIndex, to: endIndex)
     }
     
     /// Provides safe access to an element in a Collection.

@@ -20,4 +20,12 @@ public extension CGFloat {
     public func clamp(to range: ClosedRange<CGFloat>) -> CGFloat {
         return Swift.min(Swift.max(self, range.lowerBound), range.upperBound)
     }
+    
+    /// Generates a random CGFloat within the given range.
+    ///
+    /// - Parameter range: The desired range for the random value
+    /// - Returns: The random value
+    public static func random(_ range: ClosedRange<CGFloat>) -> CGFloat {
+        return range.lowerBound + (CGFloat(drand48()) * (range.upperBound - range.lowerBound))
+    }
 }
