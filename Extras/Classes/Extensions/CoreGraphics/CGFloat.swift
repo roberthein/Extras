@@ -28,4 +28,22 @@ public extension CGFloat {
     public static func random(_ range: ClosedRange<CGFloat>) -> CGFloat {
         return range.lowerBound + (CGFloat(drand48()) * (range.upperBound - range.lowerBound))
     }
+    
+    public func stretch(limit: CGFloat) -> CGFloat {
+        return limit * (1 + log10(self / limit))
+    }
+    
+    public mutating func stretch(limits: ClosedRange<CGFloat>) {
+        self = stretch(limits: limits)
+    }
+    
+    public func stretch(limits: ClosedRange<CGFloat>) -> CGFloat {
+        if self > limits.upperBound {
+            return stretch(limit: limits.upperBound)
+        } else if self < limits.lowerBound {
+            return stretch(limit: limits.lowerBound)
+        }
+        
+        return self
+    }
 }

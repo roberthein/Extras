@@ -49,3 +49,11 @@ public func |<< (left: SCNNode, right: [SCNNode]) -> SCNNode {
     
     return left
 }
+
+public extension SCNNode {
+    
+    public func applyShader(shaderModifiers: [SCNShaderModifierEntryPoint : String]) {
+        geometry?.shaderModifiers = shaderModifiers
+        childNodes.compactMap { $0.geometry }.forEach { $0.shaderModifiers = shaderModifiers }
+    }
+}

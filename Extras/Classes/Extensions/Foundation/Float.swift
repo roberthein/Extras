@@ -1,4 +1,5 @@
 import Foundation
+import CoreGraphics
 
 public extension Float {
     
@@ -8,5 +9,9 @@ public extension Float {
     /// - Returns: The random value
     public static func random(_ range: ClosedRange<Float>) -> Float {
         return range.lowerBound + (Float(drand48()) * (range.upperBound - range.lowerBound))
+    }
+    
+    public mutating func stretch(limits: ClosedRange<CGFloat>) {
+        self = Float(CGFloat(self).stretch(limits: limits))
     }
 }
