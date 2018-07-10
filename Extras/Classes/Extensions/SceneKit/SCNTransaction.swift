@@ -13,7 +13,7 @@ public extension SCNTransaction {
     public static func easeIn(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = duration
-        SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeIn)))
+        SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         SCNTransaction.completionBlock = completionBlock
         animation()
         SCNTransaction.commit()
@@ -27,7 +27,7 @@ public extension SCNTransaction {
     public static func easeOut(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = duration
-        SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeOut)))
+        SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         SCNTransaction.completionBlock = completionBlock
         animation()
         SCNTransaction.commit()
@@ -41,19 +41,9 @@ public extension SCNTransaction {
     public static func easeInOut(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = duration
-        SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)))
+        SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         SCNTransaction.completionBlock = completionBlock
         animation()
         SCNTransaction.commit()
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToCAMediaTimingFunctionName(_ input: String) -> CAMediaTimingFunctionName {
-	return CAMediaTimingFunctionName(rawValue: input)
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
-	return input.rawValue
 }
