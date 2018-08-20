@@ -5,7 +5,7 @@ public extension SCNVector3 {
     
     /// An empty SCNVector3.
     public static var zero: SCNVector3 {
-        return SCNVector3(0, 0, 0)
+        return SCNVector3Zero
     }
     
     /// A SCNVector3 that represents the X axis.

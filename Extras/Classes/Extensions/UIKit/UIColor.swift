@@ -22,4 +22,33 @@ public extension UIColor {
     public class func hex(_ rgb: Int) -> UIColor {
         return UIColor.rgb(CGFloat((rgb >> 16) & 0xFF), CGFloat((rgb >> 8) & 0xFF), CGFloat(rgb & 0xFF))
     }
+    
+    public class func blend(_ first: UIColor, _ second: UIColor, ratio: CGFloat = 0.5) -> UIColor {
+        func blendComponent(from firstValue: CGFloat, to secondValue: CGFloat) -> CGFloat {
+            let diff = secondValue - firstValue
+            return diff * ratio + firstValue
+        }
+        
+        let firstCIColor = CIColor(color: first)
+        let secondCIColor = CIColor(color: second)
+        
+        let red = blendComponent(from: firstCIColor.red, to: secondCIColor.red)
+        let green = blendComponent(from: firstCIColor.green, to: secondCIColor.green)
+        let blue = blendComponent(from: firstCIColor.blue, to: secondCIColor.blue)
+        let alpha = blendComponent(from: firstCIColor.alpha, to: secondCIColor.alpha)
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    var components: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let color = CIColor(color: self)
+        return (color.red, color.green, color.blue, color.alpha)
+    }
+}
+
+extension Collection where Element == UIColor {
+    
+    var cgColors: [CGColor] {
+        return map { $0.cgColor }
+    }
 }

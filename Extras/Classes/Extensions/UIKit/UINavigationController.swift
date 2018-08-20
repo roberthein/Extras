@@ -8,8 +8,11 @@ public extension UINavigationController {
     /// - Parameters:
     ///   - navigationBarClass: A custom class for the navigation bar.
     ///   - rootViewController: The root view controller of the navigation controller.
-    public convenience init(navigationBarClass: Swift.AnyClass, rootViewController: UIViewController) {
-        self.init(navigationBarClass: navigationBarClass, toolbarClass: nil)
-        viewControllers = [rootViewController]
+    public convenience init(rootViewController: UIViewController? = nil, toolbarClass: AnyClass? = nil, navigationBarClass: AnyClass? = nil) {
+        self.init(navigationBarClass: navigationBarClass, toolbarClass: toolbarClass)
+        
+        if let rootViewController = rootViewController {
+            viewControllers = [rootViewController]
+        }
     }
 }
