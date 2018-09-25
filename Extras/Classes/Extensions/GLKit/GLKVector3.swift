@@ -22,7 +22,7 @@ extension GLKVector3 {
 
 extension GLKVector3: Equatable {
     
-    public static func ==(lhs: GLKVector3, rhs: GLKVector3) -> Bool {
+    public static func == (lhs: GLKVector3, rhs: GLKVector3) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     }
 }

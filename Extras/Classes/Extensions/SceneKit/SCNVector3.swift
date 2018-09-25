@@ -1,5 +1,5 @@
 import Foundation
-import SceneKit
+import SceneKit.SceneKitTypes
 
 public extension SCNVector3 {
     
@@ -21,5 +21,43 @@ public extension SCNVector3 {
     /// A SCNVector3 that represents the Z axis.
     public static var zAxis: SCNVector3 {
         return SCNVector3(0, 0, 1)
+    }
+    
+    public mutating func set(_ position: Float, for axis: SCNVector3) {
+        switch (axis.x, axis.y, axis.z) {
+        case (1, 0, 0): x = position
+        case (0, 1, 0): y = position
+        case (0, 0, 1): z = position
+        default: break
+        }
+    }
+    
+    public func axisValue(for axis: SCNVector3) -> Float {
+        switch (axis.x, axis.y, axis.z) {
+        case (1, 0, 0): return x
+        case (0, 1, 0): return y
+        case (0, 0, 1): return z
+        default: return 0
+        }
+    }
+    
+    public func positionValue(for axis: SCNVector3) -> Float {
+        switch (axis.x, axis.y, axis.z) {
+        case (1, 0, 0): return y
+        case (0, 1, 0): return x
+        default: return 0
+        }
+    }
+    
+    public func rotationValue(for axis: SCNVector3) -> Float {
+        switch (axis.x, axis.y, axis.z) {
+        case (1, 0, 0): return x
+        case (0, 1, 0): return y
+        default: return 0
+        }
+    }
+    
+    public static func == (lhs: SCNVector3, rhs: SCNVector3) -> Bool {
+        return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     }
 }
