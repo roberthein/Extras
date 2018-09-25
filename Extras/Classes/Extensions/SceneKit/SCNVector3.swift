@@ -32,28 +32,37 @@ public extension SCNVector3 {
         }
     }
     
-    public func axisValue(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return x
-        case (0, 1, 0): return y
-        case (0, 0, 1): return z
-        default: return 0
+    public func positionValue(for axis: SCNVector3, layout: SCNLayout) -> Float {
+        switch layout {
+        case .vertical:
+            switch (axis.x, axis.y, axis.z) {
+            case (1, 0, 0), (0, 0, 1): return x
+            case (0, 1, 0): return y
+            default: return 0
+            }
+        case .horizontal:
+            switch (axis.x, axis.y, axis.z) {
+            case (0, 1, 0), (0, 0, 1): return y
+            case (1, 0, 0): return x
+            default: return 0
+            }
         }
     }
     
-    public func positionValue(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return y
-        case (0, 1, 0): return x
-        default: return 0
-        }
-    }
-    
-    public func rotationValue(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return x
-        case (0, 1, 0): return y
-        default: return 0
+    public func rotationValue(for axis: SCNVector3, layout: SCNLayout) -> Float {
+        switch layout {
+        case .vertical:
+            switch (axis.x, axis.y, axis.z) {
+            case (1, 0, 0), (0, 0, 1): return -y
+            case (0, 1, 0): return x
+            default: return 0
+            }
+        case .horizontal:
+            switch (axis.x, axis.y, axis.z) {
+            case (0, 1, 0), (0, 0, 1): return x
+            case (1, 0, 0): return y
+            default: return 0
+            }
         }
     }
     

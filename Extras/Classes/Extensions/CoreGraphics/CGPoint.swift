@@ -8,19 +8,37 @@ extension CGPoint {
         return CGPoint(x: x.stretch(limits: limits), y: y.stretch(limits: limits))
     }
     
-    public func positionVelocity(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return Float(x)
-        case (0, 1, 0): return Float(y)
-        default: return 0
+    public func positionVelocityValue(for axis: SCNVector3, layout: SCNLayout) -> Float {
+        switch layout {
+        case .vertical:
+            switch (axis.x, axis.y, axis.z) {
+            case (1, 0, 0), (0, 0, 1): return Float(x)
+            case (0, 1, 0): return Float(y)
+            default: return 0
+            }
+        case .horizontal:
+            switch (axis.x, axis.y, axis.z) {
+            case (0, 1, 0), (0, 0, 1): return Float(y)
+            case (1, 0, 0): return Float(x)
+            default: return 0
+            }
         }
     }
     
-    public func rotationVelocity(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return Float(y)
-        case (0, 1, 0): return Float(x)
-        default: return 0
+    public func rotationVelocityValue(for axis: SCNVector3, layout: SCNLayout) -> Float {
+        switch layout {
+        case .vertical:
+            switch (axis.x, axis.y, axis.z) {
+            case (1, 0, 0): return Float(y)
+            case (0, 1, 0), (0, 0, 1): return Float(x)
+            default: return 0
+            }
+        case .horizontal:
+            switch (axis.x, axis.y, axis.z) {
+            case (1, 0, 0): return Float(x)
+            case (0, 1, 0), (0, 0, 1): return Float(y)
+            default: return 0
+            }
         }
     }
 }
