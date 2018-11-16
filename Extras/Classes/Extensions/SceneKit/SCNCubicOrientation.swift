@@ -16,17 +16,15 @@ public enum SCNCubicOrientation: String {
         case (-step ... step):
             return .front
         case (-step * 3 ... -step):
-            return axis == .yAxis ? .left : .top
+            return axis == .yAxis ? .left : .bottom
         case (step ... step * 3):
-            return axis == .yAxis ? .right : .bottom
+            return axis == .yAxis ? .right : .top
         case (step * 3 ... step * 4), (-step * 4 ... -step * 3):
             return .back
         default:
             return .front
         }
     }
-    
-    
     
     public func possibleAxes(for layout: SCNLayout) -> (horizontal: SCNVector3, vertical: SCNVector3) {
         switch layout {
@@ -62,6 +60,32 @@ public enum SCNCubicOrientation: String {
             } else if layout == .horizontal, axis == .yAxis, self == .back {
                 return -1
             } else if layout == .horizontal, axis == .xAxis, isRotation {
+                return -1
+            } else if layout == .horizontal, axis == .zAxis, self == .top {
+                return -1
+            } else {
+                return 1
+            }
+        }
+    }
+    
+    public func velocityCorrection(for axis: SCNVector3, layout: SCNLayout, isControlNode: Bool, isRotation: Bool) -> Float {
+        if isControlNode {
+            return 1
+        } else {
+            if layout == .horizontal, self == .back, axis == .yAxis, !isRotation {
+                return 1
+            } else if layout == .horizontal, self == .back, axis == .yAxis, isRotation {
+                return -1
+            } else if layout == .horizontal, self == .bottom, axis == .zAxis, !isRotation {
+                return -1
+            } else if layout == .horizontal, self == .top, axis == .zAxis, isRotation {
+                return -1
+            } else if layout == .vertical, self == .left, axis == .zAxis {
+                return -1
+            } else if layout == .vertical, self == .back, axis == .xAxis {
+                return -1
+            } else if axis == .yAxis, !isRotation {
                 return -1
             } else {
                 return 1
