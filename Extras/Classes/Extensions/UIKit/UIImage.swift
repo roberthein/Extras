@@ -3,7 +3,7 @@ import UIKit
 
 public extension UIImage {
     
-    public class func image(from layer: CALayer) -> UIImage? {
+    class func image(from layer: CALayer) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(layer.bounds.size, layer.isOpaque, UIScreen.main.scale)
         defer { UIGraphicsEndImageContext() }
         
@@ -23,7 +23,7 @@ public extension UIImage {
         }
     }
     
-    public var aspectRatio: CGFloat {
+    var aspectRatio: CGFloat {
         return size.height / size.width
     }
 }

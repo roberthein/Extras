@@ -6,7 +6,7 @@ public extension Array {
     ///
     /// - Parameter transform: The closure that returns the index and the element.
     /// - Returns: The transformed array.
-    public func enumeratedMap<T>(_ transform: (Int, Element) -> T) -> [T] {
+    func enumeratedMap<T>(_ transform: (Int, Element) -> T) -> [T] {
         var result: [T] = []
         result.reserveCapacity(count)
         

@@ -4,11 +4,11 @@ import SceneKit.SceneKitTypes
 
 public extension GLKQuaternion {
     
-    public init(radians: Float, axis: GLKVector3) {
+    init(radians: Float, axis: GLKVector3) {
         self = GLKQuaternionMakeWithAngleAndVector3Axis(radians, axis)
     }
     
-    public init(vector: SCNVector4) {
+    init(vector: SCNVector4) {
         self = GLKQuaternionMakeWithAngleAndAxis(vector.w, vector.x, vector.y, vector.z)
     }
 }

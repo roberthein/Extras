@@ -4,11 +4,11 @@ import SceneKit.SceneKitTypes
 
 public extension SCNQuaternion {
     
-    public init(radians: Float, axis: SCNVector3) {
+    init(radians: Float, axis: SCNVector3) {
         self = SCNQuaternion(axis.x, axis.y, axis.z, radians)
     }
     
-    public init(vector: SCNVector4) {
+    init(vector: SCNVector4) {
         self = SCNQuaternion(vector.x, vector.y, vector.z, vector.w)
     }
 }

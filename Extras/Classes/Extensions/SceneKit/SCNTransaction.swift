@@ -10,7 +10,7 @@ public extension SCNTransaction {
     /// - Parameters:
     ///   - duration: The TimeInterval representing the duration of the animation
     ///   - transaction: The animation closure
-    public static func easeIn(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
+    static func easeIn(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = duration
         SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
@@ -24,7 +24,7 @@ public extension SCNTransaction {
     /// - Parameters:
     ///   - duration: The TimeInterval representing the duration of the animation
     ///   - transaction: The animation closure
-    public static func easeOut(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
+    static func easeOut(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = duration
         SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
@@ -38,7 +38,7 @@ public extension SCNTransaction {
     /// - Parameters:
     ///   - duration: The TimeInterval representing the duration of the animation
     ///   - transaction: The animation closure
-    public static func easeInOut(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
+    static func easeInOut(duration: TimeInterval, _ animation: () -> (), _ completionBlock: @escaping TransactionClosure) {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = duration
         SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)

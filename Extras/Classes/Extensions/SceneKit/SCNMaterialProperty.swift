@@ -3,13 +3,13 @@ import SceneKit
 
 public extension SCNMaterialProperty {
     
-    public func image(_ imageName: String, intensity intensityValue: CGFloat = 1, repeats: Float = 1) {
-        image(UIImage(named: imageName), intensity: intensityValue, repeats: repeats)
+    func image(_ imageName: String, _ intensity: CGFloat = 1, repeats: Float = 1) {
+        image(UIImage(named: imageName), intensity, repeats: repeats)
     }
     
-    public func image(_ image: UIImage?, intensity intensityValue: CGFloat = 1, repeats: Float = 1) {
-        contents = image
-        intensity = intensityValue
+    func image(_ contents: UIImage?, _ intensity: CGFloat = 1, repeats: Float = 1) {
+        self.contents = contents
+        self.intensity = intensity
         
         if repeats != 1 {
             contentsTransform = SCNMatrix4MakeScale(repeats, repeats, 0)
@@ -18,8 +18,8 @@ public extension SCNMaterialProperty {
         }
     }
     
-    public func color(_ color: UIColor, intensity intensityValue: CGFloat = 1) {
-        contents = color
-        intensity = intensityValue
+    func color(_ contents: UIColor, _ intensity: CGFloat = 1) {
+        self.contents = contents
+        self.intensity = intensity
     }
 }

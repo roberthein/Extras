@@ -4,7 +4,7 @@ import QuartzCore
 
 public extension CAGradientLayer {
     
-    public convenience init(size: CGSize, colors: [CGColor], locations: [NSNumber]? = nil) {
+    convenience init(size: CGSize, colors: [CGColor], locations: [NSNumber]? = nil) {
         self.init()
         self.colors = colors
         self.locations = locations

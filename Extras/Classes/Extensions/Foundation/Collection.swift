@@ -21,7 +21,7 @@ public extension Collection {
     /// Provides safe access to an element in a Collection.
     ///
     /// - Parameter index: The index for the desired element
-    public subscript(safe index: Index) -> Element? {
+    subscript(safe index: Index) -> Element? {
         guard distance(to: index) >= 0, distance(from: index) > 0 else { return nil }
         return self[index]
     }

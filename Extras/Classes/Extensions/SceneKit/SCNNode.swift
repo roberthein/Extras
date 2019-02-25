@@ -52,12 +52,24 @@ public func |<< (left: SCNNode, right: [SCNNode]) -> SCNNode {
 
 public extension SCNNode {
     
-    public func applyShader(shaderModifiers: [SCNShaderModifierEntryPoint : String]) {
+    func add(_ nodes: SCNNode...) {
+        nodes.forEach {
+            addChildNode($0)
+        }
+    }
+    
+    func add(_ nodes: [SCNNode]) {
+        nodes.forEach {
+            addChildNode($0)
+        }
+    }
+    
+    func applyShader(shaderModifiers: [SCNShaderModifierEntryPoint : String]) {
         geometry?.shaderModifiers = shaderModifiers
         childNodes.compactMap { $0.geometry }.forEach { $0.shaderModifiers = shaderModifiers }
     }
     
-    public func position(for axis: SCNVector3) -> Float {
+    func position(for axis: SCNVector3) -> Float {
         switch (axis.x, axis.y, axis.z) {
         case (1, 0, 0): return position.x
         case (0, 1, 0): return position.y
@@ -66,7 +78,7 @@ public extension SCNNode {
         }
     }
     
-    public func rotation(for axis: SCNVector3) -> Float {
+    func rotation(for axis: SCNVector3) -> Float {
         switch (axis.x, axis.y, axis.z) {
         case (1, 0, 0): return rotation.x * rotation.w
         case (0, 1, 0): return rotation.y * rotation.w
@@ -75,7 +87,7 @@ public extension SCNNode {
         }
     }
     
-    public func orientation(for axis: SCNVector3) -> Float {
+    func orientation(for axis: SCNVector3) -> Float {
         switch (axis.x, axis.y, axis.z) {
         case (1, 0, 0): return orientation.x * orientation.w
         case (0, 1, 0): return orientation.y * orientation.w

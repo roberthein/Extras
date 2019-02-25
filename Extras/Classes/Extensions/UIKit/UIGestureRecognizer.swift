@@ -3,7 +3,7 @@ import UIKit
 
 public extension UIGestureRecognizer {
     
-    public func cancel() {
+    func cancel() {
         isEnabled = false
         isEnabled = true
     }

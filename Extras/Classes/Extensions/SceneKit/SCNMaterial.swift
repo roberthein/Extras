@@ -3,7 +3,7 @@ import SceneKit
 
 public extension SCNMaterial {
     
-    public class func PBR() -> SCNMaterial {
+    class func PBR() -> SCNMaterial {
         let material = SCNMaterial()
         material.lightingModel = .physicallyBased
         
