@@ -48,48 +48,4 @@ public enum SCNCubicOrientation: String {
             }
         }
     }
-    
-    public func correction(for axis: SCNVector3, layout: SCNLayout, isControlNode: Bool, isRotation: Bool) -> Float {
-        if isControlNode, isRotation, layout == .horizontal, axis == .xAxis {
-            return -1
-        } else {
-            if layout == .vertical, axis == .xAxis, self == .back {
-                return -1
-            } else if layout == .vertical, axis == .zAxis, self == .left {
-                return -1
-            } else if layout == .horizontal, axis == .yAxis, self == .back {
-                return -1
-            } else if layout == .horizontal, axis == .xAxis, isRotation {
-                return -1
-            } else if layout == .horizontal, axis == .zAxis, self == .top {
-                return -1
-            } else {
-                return 1
-            }
-        }
-    }
-    
-    public func velocityCorrection(for axis: SCNVector3, layout: SCNLayout, isControlNode: Bool, isRotation: Bool) -> Float {
-        if isControlNode {
-            return 1
-        } else {
-            if layout == .horizontal, self == .back, axis == .yAxis, !isRotation {
-                return 1
-            } else if layout == .horizontal, self == .back, axis == .yAxis, isRotation {
-                return -1
-            } else if layout == .horizontal, self == .bottom, axis == .zAxis, !isRotation {
-                return -1
-            } else if layout == .horizontal, self == .top, axis == .zAxis, isRotation {
-                return -1
-            } else if layout == .vertical, self == .left, axis == .zAxis {
-                return -1
-            } else if layout == .vertical, self == .back, axis == .xAxis {
-                return -1
-            } else if axis == .yAxis, !isRotation {
-                return -1
-            } else {
-                return 1
-            }
-        }
-    }
 }

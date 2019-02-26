@@ -2,33 +2,26 @@ import Foundation
 import CoreGraphics
 import SceneKit.SceneKitTypes
 
-extension CGPoint {
+public extension CGPoint {
     
-    public func stretch(limits: ClosedRange<CGFloat>) -> CGPoint {
+    func stretch(limits: ClosedRange<CGFloat>) -> CGPoint {
         return CGPoint(x: x.stretch(limits: limits), y: y.stretch(limits: limits))
     }
     
-    public func positionVelocityValue(for axis: SCNVector3, layout: SCNLayout) -> Float {
-        switch layout {
-        case .vertical:
-            switch (axis.x, axis.y, axis.z) {
-            case (1, 0, 0), (0, 0, 1): return Float(x)
-            case (0, 1, 0): return Float(y)
-            default: return 0
-            }
-        case .horizontal:
-            switch (axis.x, axis.y, axis.z) {
-            case (0, 1, 0), (0, 0, 1): return Float(y)
-            case (1, 0, 0): return Float(x)
-            default: return 0
-            }
+    func positionVelocityValue(for axis: SCNVector3, at orientation: SCNCubicOrientation, isCameraController: Bool) -> Float {
+        switch (axis.x, axis.y, axis.z) {
+        case (1, 0, 0), (0, 0, 1): return orientation == .back ? Float(-x) : Float(x)
+        case (0, 1, 0): return Float(-y)
+        default: return 0
         }
     }
     
-    public func rotationVelocityValue(for axis: SCNVector3, layout: SCNLayout) -> Float {
+    func rotationVelocityValue(for axis: SCNVector3, at orientation: SCNCubicOrientation, isCameraController: Bool) -> Float {
         switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return Float(x)
-        case (0, 1, 0), (0, 0, 1): return Float(y)
+        case (1, 0, 0):
+            return isCameraController ? Float(-x) : Float(x)
+        case (0, 1, 0), (0, 0, 1):
+            return Float(y)
         default: return 0
         }
     }
@@ -36,6 +29,10 @@ extension CGPoint {
 
 public func +(left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
+
+public func -(left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x - right.x, y: left.y - right.y)
 }
 
 public func *(left: CGPoint, right: CGPoint) -> CGPoint {
