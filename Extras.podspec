@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Extras'
-  s.version      = '1.2.0'
+  s.version      = '1.3.0'
   s.ios.deployment_target = '10.0'
   s.summary      = 'Just some extras..'
   s.description  = <<-DESC
