@@ -7,7 +7,7 @@ public extension SCNScene {
     ///
     /// - Parameter name: The name of the .dae file without extension.
     convenience init(daeName name: String) {
-        self.init(named: name + ".dae", inDirectory: "art.scnassets/Geometry")!
+        self.init(named: name + ".dae", inDirectory: "Geometry.scnassets")!
     }
     
     func add(_ nodes: SCNNode...) {

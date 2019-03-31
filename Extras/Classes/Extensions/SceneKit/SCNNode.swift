@@ -78,20 +78,11 @@ public extension SCNNode {
         }
     }
     
-    func rotation(for axis: SCNVector3) -> Float {
+    func eulerAngle(for axis: SCNVector3) -> Float {
         switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return rotation.x * rotation.w
-        case (0, 1, 0): return rotation.y * rotation.w
-        case (0, 0, 1): return rotation.z * rotation.w
-        default: return 0
-        }
-    }
-    
-    func orientation(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return orientation.x * orientation.w
-        case (0, 1, 0): return orientation.y * orientation.w
-        case (0, 0, 1): return orientation.z * orientation.w
+        case (1, 0, 0): return eulerAngles.x
+        case (0, 1, 0): return eulerAngles.y
+        case (0, 0, 1): return eulerAngles.z
         default: return 0
         }
     }

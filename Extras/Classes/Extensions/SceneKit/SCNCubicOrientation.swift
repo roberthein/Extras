@@ -26,26 +26,14 @@ public enum SCNCubicOrientation: String {
         }
     }
     
-    public func possibleAxes(for layout: SCNLayout) -> (horizontal: SCNVector3, vertical: SCNVector3) {
-        switch layout {
-        case .vertical:
-            switch self {
-            case .front, .back:
+    public var possibleAxes: (horizontal: SCNVector3, vertical: SCNVector3) {
+        switch self {
+        case .front, .back:
             return (.xAxis, .yAxis)
-            case .left, .right:
+        case .left, .right:
             return (.zAxis, .yAxis)
-            default:
+        default:
             return (SCNVector3Zero, SCNVector3Zero)
-            }
-        case .horizontal:
-            switch self {
-            case .front, .back:
-                return (.xAxis, .yAxis)
-            case .top, .bottom:
-                return (.xAxis, .zAxis)
-            default:
-                return (SCNVector3Zero, SCNVector3Zero)
-            }
         }
     }
 }
