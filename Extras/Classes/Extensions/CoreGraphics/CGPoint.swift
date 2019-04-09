@@ -12,10 +12,6 @@ public extension CGPoint {
         return CGPoint(x: 0, y: 1)
     }
     
-    func stretch(limits: ClosedRange<CGFloat>) -> CGPoint {
-        return CGPoint(x: x.stretch(limits: limits), y: y.stretch(limits: limits))
-    }
-    
     func positionVelocityValue(for axis: CGPoint, at orientation: SCNCubicOrientation, isCameraController: Bool) -> Float {
         switch (axis.x, axis.y) {
         case (1, 0): return orientation == .back ? Float(-x) : Float(x)

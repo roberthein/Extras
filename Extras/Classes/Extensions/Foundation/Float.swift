@@ -7,32 +7,62 @@ public extension Float {
     ///
     /// - Parameter range: The lower and upper bound where the value should be clamped to
     /// - Returns: The clamped value
+//    mutating func clamp(to range: ClosedRange<Float>) {
+//        self = clamped(to: range) ?? self
+//    }
+//
+//    func clamped(to range: ClosedRange<Float>) -> Float? {
+//        if range.contains(self) {
+//            return Swift.min(Swift.max(self, range.lowerBound), range.upperBound)
+//        }
+//
+//        return nil
+//    }
+//
+//    mutating func rubberBand(limits: ClosedRange<Float>, stiffness: Float) {
+//        self = rubberBanding(limits: limits, stiffness: stiffness) ?? self
+//    }
+//
+//    func rubberBanding(limits: ClosedRange<Float>, stiffness: Float) -> Float? {
+//        if self > limits.upperBound {
+//            let offset = abs(limits.upperBound - self) / stiffness
+//            return limits.upperBound + offset
+//        } else if self < limits.lowerBound {
+//            let offset = abs(limits.lowerBound - self) / stiffness
+//            return limits.lowerBound - offset
+//        }
+//
+//        return nil
+//    }
+    
+    
+    
     mutating func clamp(to range: ClosedRange<Float>) {
-        self = clamped(to: range)
+        self = clamped(to: range) ?? self
     }
     
-    func clamped(to range: ClosedRange<Float>) -> Float {
-        return Swift.min(Swift.max(self, range.lowerBound), range.upperBound)
+    func clamped(to range: ClosedRange<Float>) -> Float? {
+        if !range.contains(self) {
+            return Swift.min(Swift.max(self, range.lowerBound), range.upperBound)
+        }
+        
+        return nil
     }
     
-    mutating func stretch(limits: ClosedRange<Float>, factor: Float) {
-        self = stretched(limits: limits, factor: factor)
+    mutating func rubberBand(limits: ClosedRange<Float>, stiffness: Float) {
+        self = rubberBanding(limits: limits, stiffness: stiffness) ?? self
     }
     
-    func stretched(limits: ClosedRange<Float>, factor: Float) -> Float {
+    func rubberBanding(limits: ClosedRange<Float>, stiffness: Float) -> Float? {
         if self > limits.upperBound {
-            let offset = abs(limits.upperBound - self) / factor
+            let offset = abs(limits.upperBound - self) / stiffness
             return limits.upperBound + offset
         } else if self < limits.lowerBound {
-            let offset = abs(limits.lowerBound - self) / factor
+            let offset = abs(limits.lowerBound - self) / stiffness
             return limits.lowerBound - offset
         }
         
-        return self
-    }
-    
-    mutating func stretch(limits: ClosedRange<Float>) {
-        self = Float(CGFloat(self).stretch(limits: CGFloat(limits.lowerBound) ... CGFloat(limits.upperBound)))
+        return nil
     }
     
     func round(to divisor: Float) -> Float {
