@@ -64,11 +64,6 @@ public extension SCNNode {
         }
     }
     
-    func applyShader(shaderModifiers: [SCNShaderModifierEntryPoint : String]) {
-        geometry?.shaderModifiers = shaderModifiers
-        childNodes.compactMap { $0.geometry }.forEach { $0.shaderModifiers = shaderModifiers }
-    }
-    
     func position(for axis: SCNVector3) -> Float {
         switch (axis.x, axis.y, axis.z) {
         case (1, 0, 0): return position.x

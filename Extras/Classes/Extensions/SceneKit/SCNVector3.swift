@@ -32,22 +32,6 @@ public extension SCNVector3 {
         }
     }
     
-    func positionValue(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0), (0, 0, 1): return x
-        case (0, 1, 0): return y
-        default: return 0
-        }
-    }
-    
-    func rotationValue(for axis: SCNVector3, at orientation: SCNCubicOrientation, isCameraController: Bool) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0), (0, 0, 1): return (orientation == .back || orientation == .right) ? y : -y
-        case (0, 1, 0): return x
-        default: return 0
-        }
-    }
-    
     static func == (lhs: SCNVector3, rhs: SCNVector3) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
     }
@@ -58,5 +42,13 @@ public extension SCNVector3 {
     
     static func - (lhs: SCNVector3, rhs: SCNVector3) -> SCNVector3 {
         return SCNVector3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z)
+    }
+    
+    static func * (lhs: SCNVector3, rhs: Float) -> SCNVector3 {
+        return SCNVector3(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs)
+    }
+    
+    static func / (lhs: SCNVector3, rhs: Float) -> SCNVector3 {
+        return SCNVector3(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs)
     }
 }

@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import SceneKit.SceneKitTypes
 
 public extension UIColor {
     
@@ -43,6 +44,14 @@ public extension UIColor {
     var components: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         let color = CIColor(color: self)
         return (color.red, color.green, color.blue, color.alpha)
+    }
+    
+    func lighten(_ ratio: CGFloat) -> UIColor {
+        return UIColor.blend(self, .white, ratio: ratio)
+    }
+    
+    func darken(_ ratio: CGFloat) -> UIColor {
+        return UIColor.blend(self, .black, ratio: ratio)
     }
 }
 
