@@ -63,22 +63,4 @@ public extension SCNNode {
             addChildNode($0)
         }
     }
-    
-    func position(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return position.x
-        case (0, 1, 0): return position.y
-        case (0, 0, 1): return position.z
-        default: return 0
-        }
-    }
-    
-    func eulerAngle(for axis: SCNVector3) -> Float {
-        switch (axis.x, axis.y, axis.z) {
-        case (1, 0, 0): return eulerAngles.x
-        case (0, 1, 0): return eulerAngles.y
-        case (0, 0, 1): return eulerAngles.z
-        default: return 0
-        }
-    }
 }
