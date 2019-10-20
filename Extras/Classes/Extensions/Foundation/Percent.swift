@@ -3,15 +3,15 @@ import CoreGraphics
 
 postfix operator %
 
-public postfix func % (value: Float) -> Float {
+postfix public func % (value: Float) -> Float {
     value / 100
 }
 
-public postfix func % (value: CGFloat) -> CGFloat {
+postfix public func % (value: CGFloat) -> CGFloat {
     value / 100
 }
 
-public postfix func % (value: Double) -> Double {
+postfix public func % (value: Double) -> Double {
     value / 100
 }
 
