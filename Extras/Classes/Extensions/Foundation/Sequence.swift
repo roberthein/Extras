@@ -30,7 +30,7 @@ public extension Sequence {
         var count = 0
         for element in self {
             if predicate(element) {
-                count += 1
+                count++
             }
         }
         
