@@ -26,7 +26,6 @@ public extension UserDefaults {
         
         register(defaults: mapped)
     }
-    
 }
 
 public extension UserDefaults {
