@@ -15,16 +15,16 @@ public extension Float {
         return nil
     }
     
-    mutating func rubberBand(limits: ClosedRange<Float>, stiffness: Float) {
-        self = rubberBanding(limits: limits, stiffness: stiffness) ?? self
+    mutating func rubberBand(limits: ClosedRange<Float>, resilience: Float) {
+        self = rubberBanding(limits: limits, resilience: resilience) ?? self
     }
     
-    func rubberBanding(limits: ClosedRange<Float>, stiffness: Float) -> Float? {
+    func rubberBanding(limits: ClosedRange<Float>, resilience: Float) -> Float? {
         if self > limits.upperBound {
-            let offset = abs(limits.upperBound - self) / stiffness
+            let offset = abs(limits.upperBound - self) / resilience
             return limits.upperBound + offset
         } else if self < limits.lowerBound {
-            let offset = abs(limits.lowerBound - self) / stiffness
+            let offset = abs(limits.lowerBound - self) / resilience
             return limits.lowerBound - offset
         }
         

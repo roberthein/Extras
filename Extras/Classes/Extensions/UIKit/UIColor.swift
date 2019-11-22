@@ -55,9 +55,17 @@ public extension UIColor {
     }
 }
 
-extension Collection where Element == UIColor {
+public extension Collection where Element == UIColor {
     
     var cgColors: [CGColor] {
         return map { $0.cgColor }
+    }
+}
+
+public extension UIColor {
+    
+    var hexString: String { cgColor.components![0 ..< 3]
+        .map { String(format: "%02lX", Int($0 * 255)) }
+        .reduce("#", +)
     }
 }
