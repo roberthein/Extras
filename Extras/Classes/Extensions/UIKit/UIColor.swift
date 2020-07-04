@@ -69,3 +69,10 @@ public extension UIColor {
         .reduce("#", +)
     }
 }
+
+public extension UIColor {
+    
+    class func gray(_ blackness: CGFloat) -> UIColor {
+        return UIColor(white: 1 - blackness, alpha: 1)
+    }
+}
